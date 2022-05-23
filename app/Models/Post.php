@@ -24,6 +24,12 @@ class Post extends Model
 
     });
 
+    self::updating(function($post){
+        $post->category()->associate(request()->category);
+
+
+    });
+
 
 
    }
