@@ -18,8 +18,27 @@ class PostController extends Controller
     public function index(){ 
         
         $posts = Post::with('category','user')->latest()->get();
+       
+        return view('post.index',compact('posts'));
 
-        return view('post.index', compact('posts'));
+       
+    }
+    public function category($id){ 
+        
+        $posts = Post::with('category','user')->where('category_id',$id)->latest()->get();
+       
+        return view('post.index',compact('posts'));
+
+       
+    }
+
+    public function author($id){ 
+        
+        $posts = Post::with('category','user')->where('user_id',$id)->latest()->get();
+        
+        return view('post.index',compact('posts'));
+
+       
     }
 
     /**
@@ -123,5 +142,14 @@ class PostController extends Controller
             $post->delete();
 
         return redirect()->route('dashboard')->with('success', 'Votre post a été supprimé');
+    }
+
+    public function detail($id){
+
+        $description = Post::find($id);
+
+        return view('post.detail', compact('description'));
+
+
     }
 }

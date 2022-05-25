@@ -16,6 +16,16 @@ use App\Http\Controllers\DashboardController;
 */
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
+Route::get('/category/{id}', [PostController::class, 'category'])->name('posts.category');
+
+Route::get('/author/{id}', [PostController::class, 'author'])->name('posts.author');
+
+Route::get('/detail/{id}', [PostController::class, 'detail'])->name('posts.detail');
+
+
+
+
+
 Route::middleware(['auth'])->group(function(){
 
 
